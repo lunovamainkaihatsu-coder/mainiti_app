@@ -75,9 +75,10 @@ st.markdown(
 )
 
 # ===========================
-#  フォルダ設定
+#  フォルダ設定（★ここを修正★）
 # ===========================
-TAROT_DIR = Path("assets") / "tarot"
+BASE_DIR = Path(__file__).resolve().parent  # app.py があるフォルダ
+TAROT_DIR = BASE_DIR / "assets" / "tarot"   # どこで実行してもOKにする
 
 if "card" not in st.session_state:
     st.session_state.card = None
@@ -247,7 +248,7 @@ if st.session_state.card:
     if st.session_state.rev:
         img = img.rotate(180, expand=True)
 
-    st.image(img)
+    st.image(img)  # ← use_container_width なしにしておく（ローカル互換）
 
     stem = st.session_state.card.stem
     data = get_card_meaning(stem)
