@@ -17,3 +17,6 @@ Thumbs.db
 
 # User custom data (セクション重要)
 custom_topics.json
+
+*.env
+
