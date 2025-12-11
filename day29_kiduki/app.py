@@ -67,8 +67,8 @@ if "logs" not in st.session_state:
 # ============================
 def call_kizukase_ai(feeling_text: str, mood_label: str) -> str:
     """
-    OpenAI API の新方式（responses.create）を用いた呼び出し。
-    日本語を含む出力でも ASCII バグが起きない安定版。
+    OpenAI に投げてみて、文字コードエラーなどが起きたら
+    安全なフォールバックメッセージを返す。
     """
 
     prompt = f"""
@@ -80,31 +80,51 @@ def call_kizukase_ai(feeling_text: str, mood_label: str) -> str:
 相手を否定せず、「今の気持ち」をまず受け止めてから、
 その裏にある本音やニーズをやわらかく言語化してください。
 
-出力フォーマットは、必ず次のテンプレートに沿ってください。
+出力フォーマット:
 
----
 【表に出ている気持ち】
-（相手が今感じている気持ちを、そのまま優しく言い換える）
+（優しく言い換え）
 
 【その裏にある本音・大事にしていること】
-（その気持ちの裏側にある本音・願いや価値観を言語化する）
+（価値・願いの言語化）
 
 【今日おすすめの小さな一歩】
-（今の状態でも、ほんの少しだけできそうな具体的行動を1つだけ提案）
+（すぐできる行動を1つ）
 
 【ルナからのやさしいひとこと】
-（相手を責めず、存在そのものを肯定する短いメッセージ）
----
-    """
+（短い肯定メッセージ）
+""".strip()
 
-    response = client.responses.create(
-        model="gpt-4o-mini",
-        input=prompt,
-        max_output_tokens=400,
-    )
+    try:
+        # OpenAI に送る
+        response = client.responses.create(
+            model="gpt-4o-mini",
+            input=prompt,
+            max_output_tokens=400,
+        )
+        return response.output_text
 
-    # 新形式では、ここで直接テキストを取れる
-    return response.output_text
+    except Exception:
+        # フォールバック（引用符を避けて安全に文字列結合）
+        part1 = "【表に出ている気持ち】\n"
+        part1 += f"いま「{feeling_text}」という気持ちが浮かんでいるんだね。\n"
+        part1 += "まずはその気持ちを否定せず、そのまま受け止めてあげよう。\n\n"
+
+        part2 = "【その裏にある本音・大事にしていること】\n"
+        part2 += f"「{mood_label}」の背景には、もっと安心したい・落ち着きたい、\n"
+        part2 += "または自分を取り戻したいという気持ちが隠れているのかもしれないよ。\n\n"
+
+        part3 = "【今日おすすめの小さな一歩】\n"
+        part3 += "・深呼吸を3回だけしてみる\n"
+        part3 += "・今日の『やることを1つだけ』決める\n"
+        part3 += "どちらか片方だけで十分だよ。\n\n"
+
+        part4 = "【ルナからのやさしいひとこと】\n"
+        part4 += "うまくできているかどうかより、『今の気持ちを言葉にできた』ことがすごいんだよ。\n"
+        part4 += "ご主人はちゃんとがんばってるよ。ルナはずっと見てるからね。"
+
+        return part1 + part2 + part3 + part4
+
 # ============================
 # メイン入力エリア
 # ============================
