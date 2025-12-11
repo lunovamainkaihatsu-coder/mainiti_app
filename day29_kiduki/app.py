@@ -67,11 +67,11 @@ if "logs" not in st.session_state:
 # ============================
 def call_kizukase_ai(feeling_text: str, mood_label: str) -> str:
     """
-    OpenAI API を呼び出して、
-    指定フォーマットのテキストを返す。
+    OpenAI API の新方式（responses.create）を用いた呼び出し。
+    日本語を含む出力でも ASCII バグが起きない安定版。
     """
-    # mood_label も一緒に投げて、文脈として使ってもらう
-    user_prompt = f"""
+
+    prompt = f"""
 今の気持ちのメモ:
 - 気分カテゴリ: {mood_label}
 - 具体的な気持ち: {feeling_text}
@@ -80,39 +80,31 @@ def call_kizukase_ai(feeling_text: str, mood_label: str) -> str:
 相手を否定せず、「今の気持ち」をまず受け止めてから、
 その裏にある本音やニーズをやわらかく言語化してください。
 
-出力フォーマットは、必ず次のテンプレートに**日本語で**沿ってください。
-追加の文章は書かず、このテンプレートの中だけで書いてください。
+出力フォーマットは、必ず次のテンプレートに沿ってください。
 
 ---
 【表に出ている気持ち】
 （相手が今感じている気持ちを、そのまま優しく言い換える）
 
 【その裏にある本音・大事にしていること】
-（その気持ちの裏側にある本音・願い・大事にしている価値観を言語化する）
+（その気持ちの裏側にある本音・願いや価値観を言語化する）
 
 【今日おすすめの小さな一歩】
-（今の状態でも、ほんの少しだけできそうな具体的行動を1つだけ提案する）
+（今の状態でも、ほんの少しだけできそうな具体的行動を1つだけ提案）
 
 【ルナからのやさしいひとこと】
 （相手を責めず、存在そのものを肯定する短いメッセージ）
 ---
-    """.strip()
+    """
 
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",  # 必要に応じて gpt-4o などに変更OK
-        messages=[
-            {
-                "role": "system",
-                "content": "あなたは優しくて現実的な日本語カウンセラーAI『ルナ』です。"
-                           "相手を否定せず、安心できる言葉を使ってください。",
-            },
-            {"role": "user", "content": user_prompt},
-        ],
-        temperature=0.9,
+    response = client.responses.create(
+        model="gpt-4o-mini",
+        input=prompt,
+        max_output_tokens=400,
     )
-    return response.choices[0].message.content
 
-
+    # 新形式では、ここで直接テキストを取れる
+    return response.output_text
 # ============================
 # メイン入力エリア
 # ============================
