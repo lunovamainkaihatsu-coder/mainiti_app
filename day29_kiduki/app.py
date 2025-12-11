@@ -9,7 +9,19 @@ from openai import OpenAI
 # 初期設定
 # ============================
 load_dotenv()
-client = OpenAI()
+
+# 1. 環境変数（.env）から読む
+api_key = os.getenv("OPENAI_API_KEY")
+
+# 2. もし空なら、Streamlit の secrets から読む（Cloud 用）
+if not api_key:
+    try:
+        api_key = st.secrets["OPENAI_API_KEY"]
+    except Exception:
+        api_key = ""
+
+# 3. OpenAI クライアントを作成
+client = OpenAI(api_key=api_key)
 
 st.set_page_config(
     page_title="ルナ式 気づかせAI β",
@@ -39,22 +51,10 @@ st.markdown(
 # ============================
 with st.sidebar:
     st.subheader("🔧 設定 / 状態")
-    api_key = os.getenv("OPENAI_API_KEY", "")
     if api_key:
         st.success("OpenAI APIキーが見つかりました ✅")
     else:
-        st.error("OPENAI_API_KEY が見つかりません ❌\n.env を確認してね。")
-
-    st.markdown("---")
-    st.markdown(
-        """
-**使い方メモ**
-
-1. 今の気持ちをそのまま書く  
-2. 「ルナに気づかせてもらう」を押す  
-3. 出てきた「今日の一歩」をできそうな範囲でやってみる  
-"""
-    )
+        st.error("OPENAI_API_KEY が見つかりません ❌\n.env または Streamlit secrets を確認してね。")
 
 # ============================
 # セッションステート（今日のログ用）
