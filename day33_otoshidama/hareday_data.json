@@ -1,0 +1,181 @@
+{
+  "members": [
+    "家族",
+    "子どもA"
+  ],
+  "events": [
+    {
+      "key": "otoshidama",
+      "label": "お年玉",
+      "group": "季節・年中行事"
+    },
+    {
+      "key": "new_year",
+      "label": "お正月",
+      "group": "季節・年中行事"
+    },
+    {
+      "key": "setsubun",
+      "label": "節分",
+      "group": "季節・年中行事"
+    },
+    {
+      "key": "hinamatsuri",
+      "label": "ひな祭り",
+      "group": "季節・年中行事"
+    },
+    {
+      "key": "white_day",
+      "label": "ホワイトデー",
+      "group": "季節・年中行事"
+    },
+    {
+      "key": "graduation",
+      "label": "卒園/卒業",
+      "group": "季節・年中行事"
+    },
+    {
+      "key": "entrance",
+      "label": "入園/入学/進級",
+      "group": "季節・年中行事"
+    },
+    {
+      "key": "kodomo_no_hi",
+      "label": "こどもの日",
+      "group": "季節・年中行事"
+    },
+    {
+      "key": "mothers_day",
+      "label": "母の日",
+      "group": "季節・年中行事"
+    },
+    {
+      "key": "fathers_day",
+      "label": "父の日",
+      "group": "季節・年中行事"
+    },
+    {
+      "key": "tanabata",
+      "label": "七夕",
+      "group": "季節・年中行事"
+    },
+    {
+      "key": "summer_vacation",
+      "label": "夏休み",
+      "group": "季節・年中行事"
+    },
+    {
+      "key": "obon",
+      "label": "お盆",
+      "group": "季節・年中行事"
+    },
+    {
+      "key": "keiro_no_hi",
+      "label": "敬老の日",
+      "group": "季節・年中行事"
+    },
+    {
+      "key": "halloween",
+      "label": "ハロウィン",
+      "group": "季節・年中行事"
+    },
+    {
+      "key": "sports_day",
+      "label": "運動会/発表会",
+      "group": "季節・年中行事"
+    },
+    {
+      "key": "shichigosan",
+      "label": "七五三",
+      "group": "季節・年中行事"
+    },
+    {
+      "key": "christmas",
+      "label": "クリスマス",
+      "group": "季節・年中行事"
+    },
+    {
+      "key": "birthday",
+      "label": "誕生日",
+      "group": "季節・年中行事"
+    },
+    {
+      "key": "wedding_anniv",
+      "label": "結婚記念日",
+      "group": "季節・年中行事"
+    },
+    {
+      "key": "year_end",
+      "label": "年末（帰省/行事）",
+      "group": "季節・年中行事"
+    },
+    {
+      "key": "wedding_gift",
+      "label": "結婚式（ご祝儀）",
+      "group": "冠婚葬祭"
+    },
+    {
+      "key": "funeral_condolence",
+      "label": "葬儀（香典）",
+      "group": "冠婚葬祭"
+    },
+    {
+      "key": "memorial_service",
+      "label": "法事/お墓参り",
+      "group": "冠婚葬祭"
+    },
+    {
+      "key": "hospital_visit",
+      "label": "お見舞い",
+      "group": "冠婚葬祭"
+    },
+    {
+      "key": "birth_gift",
+      "label": "出産祝い",
+      "group": "冠婚葬祭"
+    },
+    {
+      "key": "moving_gift",
+      "label": "引っ越し/新築祝い",
+      "group": "冠婚葬祭"
+    },
+    {
+      "key": "return_gift",
+      "label": "内祝い/お返し",
+      "group": "冠婚葬祭"
+    },
+    {
+      "key": "homecoming",
+      "label": "帰省（交通費・手土産）",
+      "group": "旅行・大型支出"
+    },
+    {
+      "key": "family_trip",
+      "label": "家族旅行",
+      "group": "旅行・大型支出"
+    },
+    {
+      "key": "leisure",
+      "label": "レジャー",
+      "group": "旅行・大型支出"
+    },
+    {
+      "key": "special_shopping",
+      "label": "特別な買い物（家具・家電）",
+      "group": "旅行・大型支出"
+    },
+    {
+      "key": "moving",
+      "label": "引っ越し（費用全般）",
+      "group": "旅行・大型支出"
+    },
+    {
+      "key": "other",
+      "label": "その他",
+      "group": "その他"
+    }
+  ],
+  "transactions": [],
+  "budgets": {},
+  "migrated": false
+}
