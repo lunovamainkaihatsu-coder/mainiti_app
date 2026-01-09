@@ -1,0 +1,12 @@
+{
+  "items": [
+    {
+      "id": "uuid",
+      "text": "やりたいこと",
+      "category": "仕事",
+      "done": true,
+      "done_at": "2026-01-09T13:19:34",
+      "created_at": "ISO8601"
+    }
+  ]
+}
