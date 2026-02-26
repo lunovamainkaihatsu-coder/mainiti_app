@@ -1,0 +1,22 @@
+{
+  "entries": [
+    {
+      "date": "2026-02-26",
+      "created_at": "2026-02-26 10:27:36",
+      "updated_at": "2026-02-26 10:27:36",
+      "mode": "未判定",
+      "scores": {
+        "energy": null,
+        "focus": null,
+        "mood": null
+      },
+      "selected_action": "",
+      "selected_category": "",
+      "why_this": "",
+      "done": false,
+      "review": "",
+      "saved_at": "",
+      "done_at": ""
+    }
+  ]
+}
