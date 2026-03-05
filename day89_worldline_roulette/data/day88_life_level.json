@@ -1,0 +1,15 @@
+{
+  "days": [
+    {
+      "date": "2026-03-05",
+      "created_at": "2026-03-05 12:17:07",
+      "updated_at": "2026-03-05 12:17:07",
+      "tasks": [],
+      "bonus": {
+        "streak_bonus": 0,
+        "notes": ""
+      },
+      "total_xp": 0
+    }
+  ]
+}
